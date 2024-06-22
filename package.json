@@ -1,0 +1,9 @@
+{
+  "type": "module",
+  "dependencies": {
+    "@google-cloud/local-auth": "^2.1.0",
+    "googleapis": "^105.0.0",
+    "http-server": "^14.1.1",
+    "node-fetch": "^3.3.2"
+  }
+}

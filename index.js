@@ -114,11 +114,11 @@ async function getLatestEmailWithSubject(auth) {
     }
 }
 
-// Run the main function repeatedly every 5 minutes
+// Run the main function repeatedly every 40 secondes
 authorize().then(auth => {
     setInterval(() => {
         getLatestEmailWithSubject(auth).catch(console.error);
-    }, 60000);  // 60000 milliseconds = 1 minutes
+    }, 40000);  // 40000 milliseconds = 40 secondes
 }).catch(console.error);
 
 

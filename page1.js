@@ -12,7 +12,7 @@ const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
 const SIGNATURE_FILE_PATH = path.join(process.cwd(), 'signature.txt');
-const PORT = process.env.PORT || 3000;  // Use the PORT environment variable or default to 3000
+const PORT = process.env.PORT || 3000;
 
 // Initialize Express
 const app = express();
@@ -119,9 +119,9 @@ async function getLatestEmailWithSubject(auth) {
     }
 }
 
-// Express route for a simple health check
-app.get('/health', (req, res) => {
-    res.status(200).send('OK');
+// Express route for displaying the main text
+app.get('/', (req, res) => {
+    res.send('Epitech - Lyon - Edusign - Process');
 });
 
 // Start the Express server and the recurring job
@@ -133,6 +133,7 @@ app.listen(PORT, () => {
         }, 40000);  // 40000 milliseconds = 40 seconds
     }).catch(console.error);
 });
+
 
 
 

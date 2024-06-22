@@ -12,6 +12,7 @@ const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
 const SIGNATURE_FILE_PATH = path.join(process.cwd(), 'signature.txt');
 
+
 // Load or save credentials
 async function loadSavedCredentialsIfExist() {
     try {

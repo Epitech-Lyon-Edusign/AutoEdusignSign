@@ -2,7 +2,7 @@
   "type": "module",
   "scripts": {
     "build": "npm install --only=production",
-    "start": "node app.js"
+    "start": "node page1.js"
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",

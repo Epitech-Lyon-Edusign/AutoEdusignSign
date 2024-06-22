@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@google-cloud/local-auth": "^2.1.0",
+    "express": "^4.19.2",
     "googleapis": "^105.0.0",
     "node-fetch": "^3.3.2",
     "punycode": "^2.3.1"

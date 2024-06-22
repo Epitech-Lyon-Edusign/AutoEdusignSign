@@ -1,4 +1,5 @@
 // Import statements with ES Module syntax
+import express from 'express';
 import { promises as fs } from 'fs';
 import path from 'path';
 import process from 'process';
@@ -6,11 +7,15 @@ import { authenticate } from '@google-cloud/local-auth';
 import { google } from 'googleapis';
 import fetch from 'node-fetch';
 
-// Define constants for file paths and scopes
+// Define constants for file paths, scopes, and server settings
 const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
 const TOKEN_PATH = path.join(process.cwd(), 'token.json');
 const CREDENTIALS_PATH = path.join(process.cwd(), 'credentials.json');
 const SIGNATURE_FILE_PATH = path.join(process.cwd(), 'signature.txt');
+const PORT = process.env.PORT || 3000;  // Use the PORT environment variable or default to 3000
+
+// Initialize Express
+const app = express();
 
 // Load or save credentials
 async function loadSavedCredentialsIfExist() {
@@ -114,12 +119,20 @@ async function getLatestEmailWithSubject(auth) {
     }
 }
 
-// Run the main function repeatedly every 40 secondes
-authorize().then(auth => {
-    setInterval(() => {
-        getLatestEmailWithSubject(auth).catch(console.error);
-    }, 40000);  // 40000 milliseconds = 40 secondes
-}).catch(console.error);
+// Express route for a simple health check
+app.get('/health', (req, res) => {
+    res.status(200).send('OK');
+});
+
+// Start the Express server and the recurring job
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    authorize().then(auth => {
+        setInterval(() => {
+            getLatestEmailWithSubject(auth).catch(console.error);
+        }, 40000);  // 40000 milliseconds = 40 seconds
+    }).catch(console.error);
+});
 
 
 
